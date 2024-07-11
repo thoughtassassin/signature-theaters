@@ -11,7 +11,7 @@ export default function Home() {
         <link rel="preload" href="/signature-theaters-02239.jpg" as="image" />
       </Head>
       <main>
-        <div className="h-screen bg-cover bg-[url('/signature-theaters-02239.jpg')]">
+        <div className="h-screen bg-cover bg-[url('/signature-theaters-02239.jpg')] bg-fixed">
           <nav className="flex justfiy-between items-center py-16 px-28 w-full bg-gradient-to-b from-black to-transparent">
             <Image
               src="/signature-theaters-logo.svg"
