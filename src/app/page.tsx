@@ -18,39 +18,38 @@ export default function Home() {
   return (
     <>
       <Head>
-        <link rel="preload" href="/signature-theaters-02239.jpg" as="image" />
+        <link rel="preload" href="/signature-theaters-logo.svg" as="image" />
       </Head>
-      <main>
-        <Hero list={homepage_hero_photos} setIsNavFixed={setIsNavFixed}>
-          <Nav isFixed={isNavFixed}>
-            <Image
-              src="/signature-theaters-logo.svg"
-              alt="logo"
-              width={isNavFixed ? 175 : 250}
-              height={100}
-            />
-            <ul
-              className={
-                isNavFixed
-                  ? `${exo2.className} flex justify-end gap-12 grow items-center text-l tracking-wider`
-                  : `${exo2.className} flex justify-end gap-12 grow items-center text-xl tracking-wider`
-              }
-            >
-              <li>
-                <a href="/services">Services</a>
-              </li>
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-              <li>
-                <a href="/products">Products</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            </ul>
-          </Nav>
-        </Hero>
+      <main className="relative">
+        <Nav isFixed={isNavFixed}>
+          <Image
+            src="/signature-theaters-logo.svg"
+            alt="logo"
+            width={isNavFixed ? 175 : 250}
+            height={78.84}
+          />
+          <ul
+            className={
+              isNavFixed
+                ? `${exo2.className} flex justify-end gap-12 grow items-center text-l tracking-wider`
+                : `${exo2.className} flex justify-end gap-12 grow items-center text-xl tracking-wider`
+            }
+          >
+            <li>
+              <a href="/services">Services</a>
+            </li>
+            <li>
+              <a href="/projects">Projects</a>
+            </li>
+            <li>
+              <a href="/products">Products</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
+            </li>
+          </ul>
+        </Nav>
+        <Hero list={homepage_hero_photos} setIsNavFixed={setIsNavFixed} />
         <div className="flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]">
           <h1
             className={`${play.className} text-6xl text-center text-[#CE0E2D] tracking-widest uppercase mt-8`}
