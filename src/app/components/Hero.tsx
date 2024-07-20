@@ -1,10 +1,10 @@
 import { useRef, useEffect } from "react";
 import { HeroPhoto } from "../utils/lists";
-import { useInView } from "framer-motion";
+import { useInView, motion } from "framer-motion";
 
 interface HeroProps {
   list: HeroPhoto[];
-  children: React.ReactNode;
+  children?: React.ReactNode;
   setIsNavFixed: (isFixed: boolean) => void;
 }
 
