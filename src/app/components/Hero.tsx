@@ -1,14 +1,17 @@
 import { useRef, useEffect } from "react";
-import { HeroPhoto } from "../utils/lists";
+import Image from "next/image";
+import { homepage_hero_photos } from "@/app/utils/lists";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import { useInView, motion } from "framer-motion";
 
+import "swiper/css";
+
 interface HeroProps {
-  list: HeroPhoto[];
-  children?: React.ReactNode;
   setIsNavFixed: (isFixed: boolean) => void;
 }
 
-const Hero = ({ list, children, setIsNavFixed }: HeroProps) => {
+const Hero = ({ setIsNavFixed }: HeroProps) => {
   const heroRef = useRef<null | HTMLDivElement>(null);
   const isInView = useInView(heroRef, { amount: 0.5 });
   const counter = useRef(0);
@@ -20,27 +23,31 @@ const Hero = ({ list, children, setIsNavFixed }: HeroProps) => {
     setIsNavFixed(!isInView);
   }, [isInView, setIsNavFixed]);
 
-  useEffect(() => {
-    if (heroRef.current === null) return;
-    let carouselIndex = 2;
-    const carousel = setInterval(() => {
-      const item = list.find((item) => item.id === carouselIndex);
-      if (heroRef.current === null || item === undefined) return;
-      heroRef.current.style.backgroundImage = `url('/optimized/${item.src}')`;
-      carouselIndex = carouselIndex === list.length - 1 ? 1 : carouselIndex + 1;
-    }, 5000);
-    return () => {
-      clearInterval(carousel);
-    };
-  }, [list, heroRef]);
-
   return (
     <div
       ref={heroRef}
-      className="h-screen bg-cover bg-fixed"
-      style={{ backgroundImage: `url('/optimized/${list[0].src}')` }}
+      className="relative h-screen bg-cover bg-center bg-hero-1"
     >
-      {children}
+      <Swiper
+        autoplay={true}
+        loop={true}
+        modules={[Autoplay]}
+        autoHeight={true}
+      >
+        {homepage_hero_photos.map((photo) => (
+          <SwiperSlide key={photo.id}>
+            <div className="h-[100vh]">
+              <Image
+                src={`/optimized/${photo.src}`}
+                alt={photo.alt}
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
