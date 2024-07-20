@@ -52,7 +52,7 @@ export const homepage_hero_photos : HeroPhoto[] = [
   },
   {
     id: 10,
-    src: "steven_winfield_1.jpg",
-    alt: "Steven Winfield living room with sliding panel television above fireplace",
+    src: "stevens_winfield_1.jpg",
+    alt: "Stevens Winfield living room with sliding panel television above fireplace",
   },
 ];
