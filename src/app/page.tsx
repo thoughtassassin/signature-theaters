@@ -7,8 +7,6 @@ import Head from "next/head";
 import Nav from "@/app/components/Nav";
 import Hero from "@/app/components/Hero";
 
-import { homepage_hero_photos } from "@/app/utils/lists";
-
 const play = Play({ weight: ["400"], subsets: ["latin"] });
 const exo2 = Exo_2({ weight: ["400"], subsets: ["latin"] });
 
@@ -49,7 +47,7 @@ export default function Home() {
             </li>
           </ul>
         </Nav>
-        <Hero list={homepage_hero_photos} setIsNavFixed={setIsNavFixed} />
+        <Hero setIsNavFixed={setIsNavFixed} />
         <div className="flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]">
           <h1
             className={`${play.className} text-6xl text-center text-[#CE0E2D] tracking-widest uppercase mt-8`}
