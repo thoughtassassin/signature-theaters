@@ -2,11 +2,11 @@ import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { homepage_hero_photos } from "@/app/utils/lists";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import { useInView, motion } from "framer-motion";
+import { Autoplay, EffectFade } from "swiper/modules";
+import { useInView } from "framer-motion";
 
 import "swiper/css";
-
+import "swiper/css/effect-fade";
 interface HeroProps {
   setIsNavFixed: (isFixed: boolean) => void;
 }
@@ -31,8 +31,9 @@ const Hero = ({ setIsNavFixed }: HeroProps) => {
       <Swiper
         autoplay={true}
         loop={true}
-        modules={[Autoplay]}
+        modules={[Autoplay, EffectFade]}
         autoHeight={true}
+        effect="fade"
       >
         {homepage_hero_photos.map((photo) => (
           <SwiperSlide key={photo.id}>
