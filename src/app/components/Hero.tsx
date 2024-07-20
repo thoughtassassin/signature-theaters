@@ -7,6 +7,7 @@ import { useInView } from "framer-motion";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
+
 interface HeroProps {
   setIsNavFixed: (isFixed: boolean) => void;
 }
@@ -29,11 +30,12 @@ const Hero = ({ setIsNavFixed }: HeroProps) => {
       className="relative h-screen bg-cover bg-center bg-hero-1"
     >
       <Swiper
-        autoplay={true}
+        autoplay={{ delay: 5000 }}
         loop={true}
+        effect="fade"
         modules={[Autoplay, EffectFade]}
         autoHeight={true}
-        effect="fade"
+        fadeEffect={{ crossFade: true }}
       >
         {homepage_hero_photos.map((photo) => (
           <SwiperSlide key={photo.id}>
