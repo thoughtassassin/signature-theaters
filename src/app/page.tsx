@@ -48,14 +48,18 @@ export default function Home() {
           </ul>
         </Nav>
         <Hero setIsNavFixed={setIsNavFixed} />
-        <div className="flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]">
+        <div
+          className="relative z-10 flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]"
+        >
           <h1
             className={`${play.className} text-6xl text-center text-[#CE0E2D] tracking-widest uppercase mt-8`}
           >
             Signature Services
           </h1>
         </div>
-        <div className="flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]">
+        <div
+          className="relative z-10 flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]"
+        >
           <h1
             className={`${play.className} text-6xl text-center text-[#FFC629] tracking-widest uppercase mt-8`}
           >

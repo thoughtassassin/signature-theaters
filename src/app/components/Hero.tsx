@@ -3,7 +3,7 @@ import Image from "next/image";
 import { homepage_hero_photos } from "@/app/utils/lists";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import { useInView } from "framer-motion";
+import { useInView, useTransform, useScroll, motion } from "framer-motion";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -15,6 +15,8 @@ interface HeroProps {
 const Hero = ({ setIsNavFixed }: HeroProps) => {
   const heroRef = useRef<null | HTMLDivElement>(null);
   const isInView = useInView(heroRef, { amount: 0.5 });
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const counter = useRef(0);
 
   useEffect(() => {
@@ -25,9 +27,10 @@ const Hero = ({ setIsNavFixed }: HeroProps) => {
   }, [isInView, setIsNavFixed]);
 
   return (
-    <div
+    <motion.div
       ref={heroRef}
-      className="relative h-screen bg-cover bg-center bg-hero-1"
+      style={{ y }}
+      className="relative h-screen top-0"
     >
       <Swiper
         autoplay={{ delay: 5000 }}
@@ -51,7 +54,7 @@ const Hero = ({ setIsNavFixed }: HeroProps) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 
