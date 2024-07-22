@@ -11,7 +11,6 @@ const FixedNavSection = ({ children, setIsNavFixed }: FixedNavSectionProps) => {
   const isInView = useInView(fixedNavSectionRef, { amount: 0.5 });
 
   useEffect(() => {
-    console.log('fixed nav section', isInView);
     setIsNavFixed(isInView);
   }, [isInView, setIsNavFixed]);
 
