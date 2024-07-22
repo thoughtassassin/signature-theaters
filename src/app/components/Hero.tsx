@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { homepage_hero_photos } from "@/app/utils/lists";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,12 +19,13 @@ const Hero = ({ setIsNavFixed }: HeroProps) => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const counter = useRef(0);
 
+  const fixNav = useCallback(() => {
+    setIsNavFixed(false);
+  }, [setIsNavFixed, setIsNavFixed]);
+
   useEffect(() => {
-    // TODO: Fix hacky solution to prevent flickering
-    counter.current++;
-    if (counter.current < 3) return;
-    setIsNavFixed(!isInView);
-  }, [isInView, setIsNavFixed]);
+    fixNav();
+  }, [fixNav]);
 
   return (
     <motion.div
