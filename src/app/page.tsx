@@ -6,6 +6,7 @@ import { Play, Exo_2 } from "next/font/google";
 import Head from "next/head";
 import Nav from "@/app/components/Nav";
 import Hero from "@/app/components/Hero";
+import FixedNavSection from "@/app/components/FixedNavSection";
 
 const play = Play({ weight: ["400"], subsets: ["latin"] });
 const exo2 = Exo_2({ weight: ["400"], subsets: ["latin"] });
@@ -48,24 +49,20 @@ export default function Home() {
           </ul>
         </Nav>
         <Hero setIsNavFixed={setIsNavFixed} />
-        <div
-          className="relative z-10 flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]"
-        >
+        <FixedNavSection setIsNavFixed={setIsNavFixed}>
           <h1
             className={`${play.className} text-6xl text-center text-[#CE0E2D] tracking-widest uppercase mt-8`}
           >
             Signature Services
           </h1>
-        </div>
-        <div
-          className="relative z-10 flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]"
-        >
+        </FixedNavSection>
+        <FixedNavSection setIsNavFixed={setIsNavFixed}>
           <h1
             className={`${play.className} text-6xl text-center text-[#FFC629] tracking-widest uppercase mt-8`}
           >
             Signature Products
           </h1>
-        </div>
+        </FixedNavSection>
       </main>
     </>
   );
