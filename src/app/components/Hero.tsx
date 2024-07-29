@@ -25,7 +25,7 @@ const Hero = () => {
 
   useEffect(() => {
     heroRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
-      duration: 1000,
+      duration: 500,
       fill: "forwards",
       easing: "ease-in",
     });
@@ -81,6 +81,7 @@ const Hero = () => {
           fill
           style={{ objectFit: "cover" }}
           quality={100}
+          priority
         />
       </div>
       <div ref={imageContainerRef} className="min-h-[100vh] w-full absolute">
@@ -90,6 +91,7 @@ const Hero = () => {
           fill
           style={{ objectFit: "cover" }}
           quality={100}
+          priority
         />
       </div>
     </motion.div>
