@@ -25,7 +25,7 @@ const Hero = () => {
 
   useEffect(() => {
     heroRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
-      duration: 500,
+      duration: 750,
       fill: "forwards",
       easing: "ease-in",
     });
