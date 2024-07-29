@@ -25,7 +25,7 @@ const Hero = () => {
 
   useEffect(() => {
     heroRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
-      duration: 500,
+      duration: 1000,
       fill: "forwards",
       easing: "ease-in",
     });
@@ -62,7 +62,7 @@ const Hero = () => {
           fill: "forwards",
           easing: "ease-out",
         });
-      }, 500);
+      }, 1000);
     };
     const imageInterval = setInterval(animateImages, 5000);
     return () => clearInterval(imageInterval);
