@@ -11,13 +11,13 @@ const FixedNavSection = ({ children, setIsNavFixed }: FixedNavSectionProps) => {
   const isInView = useInView(fixedNavSectionRef, { amount: 0.5 });
 
   useEffect(() => {
-    setIsNavFixed(isInView);
+      setIsNavFixed(isInView);
   }, [isInView, setIsNavFixed]);
 
   return (
     <div
       ref={fixedNavSectionRef}
-      className="relative z-10 flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]"
+      className="relative z-10 flex flex-col items-center border-t-2 border-t-gray-700 justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]"
     >
       {children}
     </div>

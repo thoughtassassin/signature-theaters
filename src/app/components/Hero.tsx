@@ -1,60 +1,97 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { homepage_hero_photos } from "@/app/utils/lists";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import { useInView, useTransform, useScroll, motion } from "framer-motion";
+import { useTransform, useScroll, motion } from "framer-motion";
 
-import "swiper/css";
-import "swiper/css/effect-fade";
-
-interface HeroProps {
-  setIsNavFixed: (isFixed: boolean) => void;
-}
-
-const Hero = ({ setIsNavFixed }: HeroProps) => {
+const Hero = () => {
   const heroRef = useRef<null | HTMLDivElement>(null);
-  const isInView = useInView(heroRef, { amount: 0.5 });
+  const imageContainerRef = useRef<null | HTMLDivElement>(null);
+  const [imageSrc, setImageSrc] = useState<{
+    src: string;
+    alt: string;
+  }>({
+    src: homepage_hero_photos[0].src,
+    alt: homepage_hero_photos[0].alt,
+  });
+  const [prevSrc, setPrevSrc] = useState<{
+    prev: string;
+    prevAlt: string;
+  }>({
+    prev: homepage_hero_photos[homepage_hero_photos.length - 1].src,
+    prevAlt: homepage_hero_photos[homepage_hero_photos.length - 1].alt,
+  });
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const counter = useRef(0);
-
-  const fixNav = useCallback(() => {
-    setIsNavFixed(false);
-  }, [setIsNavFixed, setIsNavFixed]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
-    fixNav();
-  }, [fixNav]);
+    heroRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
+      duration: 500,
+      fill: "forwards",
+      easing: "ease-in",
+    });
+  }, []);
+
+  useEffect(() => {
+    let counter = 0;
+    const animateImages = () => {
+      if (counter === homepage_hero_photos.length - 1) {
+        counter = 0;
+      } else {
+        counter++;
+      }
+      imageContainerRef.current?.animate([{ opacity: 100 }, { opacity: 0 }], {
+        duration: 100,
+        fill: "forwards",
+        easing: "ease-in-out",
+      });
+      const prev =
+        counter === 0 ? homepage_hero_photos.length - 1 : counter - 1;
+      setPrevSrc({
+        prev: homepage_hero_photos[prev].src,
+        prevAlt: homepage_hero_photos[prev].alt,
+      });
+      setTimeout(() => {
+        setImageSrc({
+          src: homepage_hero_photos[counter].src,
+          alt: homepage_hero_photos[counter].alt,
+        });
+      }, 150);
+      setTimeout(() => {
+        imageContainerRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
+          duration: 300,
+          fill: "forwards",
+          easing: "ease-out",
+        });
+      }, 500);
+    };
+    const imageInterval = setInterval(animateImages, 5000);
+    return () => clearInterval(imageInterval);
+  }, [setImageSrc, imageContainerRef]);
 
   return (
     <motion.div
       ref={heroRef}
       style={{ y }}
-      className="relative h-screen top-0"
+      className="relative h-screen top-0 w-full opacity-0"
     >
-      <Swiper
-        autoplay={{ delay: 5000 }}
-        loop={true}
-        effect="fade"
-        modules={[Autoplay, EffectFade]}
-        autoHeight={true}
-        fadeEffect={{ crossFade: true }}
-      >
-        {homepage_hero_photos.map((photo) => (
-          <SwiperSlide key={photo.id}>
-            <div className="h-[100vh]">
-              <Image
-                src={`/optimized/${photo.src}`}
-                alt={photo.alt}
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="min-h-[100vh] w-full absolute">
+        <Image
+          src={`/optimized/${prevSrc.prev}`}
+          alt={prevSrc.prevAlt}
+          fill
+          style={{ objectFit: "cover" }}
+          quality={100}
+        />
+      </div>
+      <div ref={imageContainerRef} className="min-h-[100vh] w-full absolute">
+        <Image
+          src={`/optimized/${imageSrc.src}`}
+          alt={imageSrc.alt}
+          fill
+          style={{ objectFit: "cover" }}
+          quality={100}
+        />
+      </div>
     </motion.div>
   );
 };
