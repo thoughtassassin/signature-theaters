@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react";
-import Image from "next/image";
 import { homepage_hero_photos } from "@/app/utils/lists";
 import { useTransform, useScroll, motion } from "framer-motion";
 

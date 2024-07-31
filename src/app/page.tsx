@@ -59,6 +59,7 @@ export default function Home() {
               } hidden md:flex flex-col md:flex-row justify-end gap-6 lg:gap-12 grow items-center ${
                 isNavFixed || isMobile ? "text-l" : "text-xl"
               } tracking-wider`}
+              style={{ textShadow: "1px 1px 5px rgba(0, 0, 0, 1)" }}
             >
               <li>
                 <a href="/services">Services</a>
