@@ -7,6 +7,7 @@ import Head from "next/head";
 import Nav from "@/app/components/Nav";
 import Hero from "@/app/components/Hero";
 import FixedNavSection from "@/app/components/FixedNavSection";
+import MobileMenuButton from "@/app/components/MobileMenuButton";
 import MobileMenu from "./components/MobileMenu";
 
 const play = Play({ weight: ["400"], subsets: ["latin"] });
@@ -16,6 +17,7 @@ export default function Home() {
   const [isNavFixed, setIsNavFixed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [width, setWidth] = useState<number>(769);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleWindowSizeChange = useCallback(() => {
     setWidth(window.innerWidth);
@@ -43,6 +45,7 @@ export default function Home() {
         <link rel="preload" href="/signature-theaters-logo.svg" as="image" />
       </Head>
       <main className="relative">
+        <MobileMenu isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />
         {isVisible ? (
           <Nav isFixed={isNavFixed} isMobile={isMobile}>
             <Image
@@ -52,7 +55,10 @@ export default function Home() {
               height={78.84}
               priority
             />
-            <MobileMenu />
+            <MobileMenuButton
+              isOpen={isMobileMenuOpen}
+              setIsOpen={setIsMobileMenuOpen}
+            />
             <ul
               className={`${
                 exo2.className
