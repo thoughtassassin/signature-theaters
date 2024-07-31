@@ -55,10 +55,10 @@ const Hero = () => {
           src: homepage_hero_photos[counter].src,
           alt: homepage_hero_photos[counter].alt,
         });
-      }, 150);
+      }, 250);
       setTimeout(() => {
         imageContainerRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
-          duration: 300,
+          duration: 500,
           fill: "forwards",
           easing: "ease-out",
         });
@@ -74,26 +74,21 @@ const Hero = () => {
       style={{ y }}
       className="relative h-screen top-0 w-full opacity-0"
     >
-      <div className="min-h-[100vh] w-full absolute">
-        <Image
-          src={`/optimized/${prevSrc.prev}`}
-          alt={prevSrc.prevAlt}
-          fill
-          style={{ objectFit: "cover" }}
-          quality={100}
-          priority
-        />
-      </div>
-      <div ref={imageContainerRef} className="min-h-[100vh] w-full absolute">
-        <Image
-          src={`/optimized/${imageSrc.src}`}
-          alt={imageSrc.alt}
-          fill
-          style={{ objectFit: "cover" }}
-          quality={100}
-          priority
-        />
-      </div>
+      <div
+        className={`min-h-[100vh] w-full absolute bg-[/optimized/${prevSrc.prev}]`}
+        style={{
+          backgroundImage: `url('/optimized/${prevSrc.prev}')`,
+          backgroundSize: "cover",
+        }}
+      />
+      <div
+        ref={imageContainerRef}
+        className="min-h-[100vh] w-full absolute"
+        style={{
+          backgroundImage: `url('/optimized/${imageSrc.src}')`,
+          backgroundSize: "cover",
+        }}
+      />
     </motion.div>
   );
 };
