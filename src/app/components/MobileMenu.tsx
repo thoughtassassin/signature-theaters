@@ -33,7 +33,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
+          fill="#FFF"
           className="size-10 absolute top-5 right-5"
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -57,6 +57,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
                 delay: 1,
               },
             }}
+            className="text-white"
           >
             <a href="/services">Services</a>
           </motion.li>
@@ -72,6 +73,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
                 delay: 1,
               },
             }}
+            className="text-white"
           >
             <a href="/projects">Projects</a>
           </motion.li>
@@ -87,6 +89,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
                 delay: 1,
               },
             }}
+            className="text-white"
           >
             <a href="/products">Products</a>
           </motion.li>
@@ -102,6 +105,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
                 delay: 1,
               },
             }}
+            className="text-white"
           >
             <a href="/contact">Contact</a>
           </motion.li>
