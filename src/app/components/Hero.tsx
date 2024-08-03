@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import { homepage_hero_photos } from "@/app/utils/lists";
 import { useTransform, useScroll, motion } from "framer-motion";
 
@@ -22,7 +22,7 @@ const Hero = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     heroRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
       duration: 1000,
       fill: "forwards",
@@ -30,7 +30,7 @@ const Hero = () => {
     });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let counter = 0;
     const animateImages = () => {
       if (counter === homepage_hero_photos.length - 1) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useLayoutEffect, useCallback } from "react";
 import Image from "next/image";
 import { Play, Exo_2 } from "next/font/google";
 import Head from "next/head";
@@ -26,11 +26,11 @@ export default function Home() {
     }
   }, [isVisible]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     handleWindowSizeChange();
   }, [handleWindowSizeChange]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
