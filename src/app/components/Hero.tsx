@@ -78,6 +78,7 @@ const Hero = () => {
         style={{
           backgroundImage: `url('/optimized/${prevSrc.prev}')`,
           backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       <div
@@ -86,6 +87,7 @@ const Hero = () => {
         style={{
           backgroundImage: `url('/optimized/${imageSrc.src}')`,
           backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
     </motion.div>
