@@ -24,7 +24,7 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     heroRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
-      duration: 1000,
+      duration: 500,
       fill: "forwards",
       easing: "ease-in",
     });
@@ -73,14 +73,14 @@ const Hero = () => {
       style={{ y }}
       className="relative h-screen top-0 w-full opacity-0"
     >
-      <div
+      {imageContainerRef ? <div
         className={`min-h-[100vh] w-full absolute bg-[/optimized/${prevSrc.prev}]`}
         style={{
           backgroundImage: `url('/optimized/${prevSrc.prev}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      />
+      />: null}
       <div
         ref={imageContainerRef}
         className="min-h-[100vh] w-full absolute"
