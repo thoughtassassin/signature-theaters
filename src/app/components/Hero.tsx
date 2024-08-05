@@ -23,8 +23,8 @@ const Hero = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   useLayoutEffect(() => {
-    heroRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
-      duration: 500,
+    heroRef.current?.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 1000,
       fill: "forwards",
       easing: "ease-in",
     });
@@ -38,7 +38,7 @@ const Hero = () => {
       } else {
         counter++;
       }
-      imageContainerRef.current?.animate([{ opacity: 100 }, { opacity: 0 }], {
+      imageContainerRef.current?.animate([{ opacity: 1 }, { opacity: 0 }], {
         duration: 100,
         fill: "forwards",
         easing: "ease-in-out",
@@ -56,7 +56,7 @@ const Hero = () => {
         });
       }, 250);
       setTimeout(() => {
-        imageContainerRef.current?.animate([{ opacity: 0 }, { opacity: 100 }], {
+        imageContainerRef.current?.animate([{ opacity: 0 }, { opacity: 1 }], {
           duration: 500,
           fill: "forwards",
           easing: "ease-out",
