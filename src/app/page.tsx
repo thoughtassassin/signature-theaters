@@ -10,6 +10,8 @@ import FixedNavSection from "@/app/components/FixedNavSection";
 import MobileMenuButton from "@/app/components/MobileMenuButton";
 import MobileMenu from "./components/MobileMenu";
 
+import { homepage_hero_photos } from "@/app/utils/lists";
+
 const play = Play({ weight: ["400"], subsets: ["latin"] });
 const exo2 = Exo_2({ weight: ["400"], subsets: ["latin"] });
 
@@ -43,6 +45,8 @@ export default function Home() {
     <>
       <Head>
         <link rel="preload" href="/signature-theaters-logo.svg" as="image" />
+        <link rel="preload" as="image" href={homepage_hero_photos[0].src} />
+        <link rel="preload" as="image" href={homepage_hero_photos[1].src} />
       </Head>
       <main className="relative">
         <MobileMenu isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />
