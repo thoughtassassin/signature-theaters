@@ -45,8 +45,8 @@ export default function Home() {
     <>
       <Head>
         <link rel="preload" href="/signature-theaters-logo.svg" as="image" />
-        <link rel="preload" as="image" href={homepage_hero_photos[0].src} />
-        <link rel="preload" as="image" href={homepage_hero_photos[1].src} />
+        <link rel="preload" href={homepage_hero_photos[0].src} as="image" />
+        <link rel="preload" href={homepage_hero_photos[1].src} as="image" />
       </Head>
       <main className="relative">
         <MobileMenu isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />

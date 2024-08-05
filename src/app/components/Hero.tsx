@@ -73,14 +73,14 @@ const Hero = () => {
       style={{ y }}
       className="relative h-screen top-0 w-full opacity-0"
     >
-      {imageContainerRef ? <div
+      {imageSrc.src && <div
         className={`min-h-[100vh] w-full absolute bg-[/optimized/${prevSrc.prev}]`}
         style={{
           backgroundImage: `url('/optimized/${prevSrc.prev}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      />: null}
+      />}
       <div
         ref={imageContainerRef}
         className="min-h-[100vh] w-full absolute"
