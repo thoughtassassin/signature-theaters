@@ -11,13 +11,12 @@ const Hero = () => {
     <motion.div
       ref={heroRef}
       style={{ y }}
-      className="relative h-screen top-0 w-full absolute opacity-0"
-      animate={{ opacity: 1 }}
+      className="relative h-screen top-0 w-full absolute"
     >
       {homepage_hero_photos.map(({ src }, index) => (
         <div
           key={index}
-          className="min-h-[100vh] w-full absolute"
+          className="min-h-[100vh] w-full fixed"
           style={{
             opacity: 0,
             backgroundImage: `url('/optimized/${src}')`,
@@ -25,7 +24,7 @@ const Hero = () => {
             backgroundPosition: "center",
             animationDelay: `${index * 6}s`,
             animationName: "imageAnimation",
-            animationDuration: "36s",
+            animationDuration: homepage_hero_photos.length * 6 + "s",
             animationTimingFunction: "linear",
             animationIterationCount: "infinite",
           }}
