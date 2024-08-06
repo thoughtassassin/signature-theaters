@@ -27,6 +27,7 @@ const Hero = () => {
             animationName: "imageAnimation",
             animationDuration: "36s",
             animationTimingFunction: "linear",
+            animationIterationCount: "infinite",
           }}
         />
       ))}
