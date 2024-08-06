@@ -16,6 +16,7 @@ const Hero = () => {
     >
       {homepage_hero_photos.map(({ src }, index) => (
         <div
+          key={index}
           className="min-h-[100vh] w-full absolute"
           style={{
             opacity: 0,
