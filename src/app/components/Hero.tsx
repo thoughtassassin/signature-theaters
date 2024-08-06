@@ -74,7 +74,7 @@ const Hero = () => {
       className="relative h-screen top-0 w-full opacity-0"
     >
       <div
-        className={`min-h-[100vh] w-full absolute bg-[/optimized/${prevSrc.prev}]`}
+        className={`min-h-[100vh] w-full absolute`}
         style={{
           backgroundImage: `url('/optimized/${prevSrc.prev}')`,
           backgroundSize: "cover",
