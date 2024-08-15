@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from "react";
+import { useRef } from "react";
 import { homepage_hero_photos } from "@/app/utils/lists";
 import { useTransform, useScroll, motion } from "framer-motion";
 

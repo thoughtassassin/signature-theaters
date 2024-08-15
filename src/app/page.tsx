@@ -87,9 +87,9 @@ export default function Home() {
           </Nav>
         ) : null}
         <Hero />
-        <FixedNavSection setIsNavFixed={setIsNavFixed}>
+        <FixedNavSection setIsNavFixed={setIsNavFixed} theme="white">
           <h1
-            className={`${play.className} text-5xl md:text-6xl text-center text-signature-yellow tracking-widest uppercase mt-8`}
+            className={`${play.className} text-5xl md:text-6xl text-center yellow-text-shadow text-signature-yellow tracking-widest uppercase mt-8`}
           >
             Signature Services
           </h1>
