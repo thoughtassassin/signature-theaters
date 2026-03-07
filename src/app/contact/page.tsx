@@ -56,8 +56,16 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Wire to your form backend here (Formspree, etc.)
-    await new Promise((res) => setTimeout(res, 1000));
+    const data = new FormData(e.target as HTMLFormElement);
+    const response = await fetch("https://formspree.io/f/xdawkgdd", {
+      method: "post",
+      body: data,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
     setSubmitting(false);
     setSubmitted(true);
   };

@@ -83,3 +83,15 @@ body {
   0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+
+/* Override browser autofill background on contact form inputs */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px black inset;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
