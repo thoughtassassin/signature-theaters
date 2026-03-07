@@ -20,7 +20,7 @@ export default function ProjectsPage() {
   return (
     <main className="bg-black min-h-screen">
       {/* Minimal dark hero */}
-      <section className="h-screen flex items-end justify-start pb-16 md:pb-24 px-8 md:px-24 bg-black grid-background">
+      <section className="h-[100dvh] flex items-end justify-start pb-28 md:pb-24 px-8 md:px-24 bg-black grid-background">
         <div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
