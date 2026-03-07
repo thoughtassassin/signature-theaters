@@ -1,23 +1,16 @@
-import { useRef, useEffect } from "react";
-import { useInView } from "framer-motion";
-
 interface FixedNavSectionProps {
   children: React.ReactNode;
-  setIsNavFixed: (isFixed: boolean) => void;
+  theme?: "black" | "white";
 }
 
-const FixedNavSection = ({ children, setIsNavFixed }: FixedNavSectionProps) => {
-  const fixedNavSectionRef = useRef<null | HTMLDivElement>(null);
-  const isInView = useInView(fixedNavSectionRef, { amount: 0.5 });
-
-  useEffect(() => {
-    setIsNavFixed(isInView);
-  }, [isInView, setIsNavFixed]);
-
+const FixedNavSection = ({ children, theme = "black" }: FixedNavSectionProps) => {
   return (
     <div
-      ref={fixedNavSectionRef}
-      className="relative z-10 flex flex-col items-center justify-start h-screen p-16 bg-gradient-to-b from-black to-[#111]"
+      className={
+        theme === "black"
+          ? "relative z-10 flex flex-col items-center justify-start min-h-screen p-8 md:p-16 bg-black"
+          : "relative z-10 flex flex-col items-center justify-start min-h-screen p-8 md:p-16 bg-stone-200"
+      }
     >
       {children}
     </div>
