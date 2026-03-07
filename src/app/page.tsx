@@ -47,38 +47,40 @@ export default function Home() {
       {/* Services section */}
       <FixedNavSection theme="gray">
         <WaveBackground />
-        <RevealWrapper className="w-full text-center mb-12 mt-8">
-          <h2
-            className={`${play.className} text-5xl md:text-6xl text-center text-white tracking-widest uppercase`}
-          >
-            Signature Services
-          </h2>
-        </RevealWrapper>
+        <div className="relative z-10 w-full flex flex-col items-center">
+          <RevealWrapper className="w-full text-center mb-12 mt-8">
+            <h2
+              className={`${play.className} text-5xl md:text-6xl text-center text-white tracking-widest uppercase`}
+            >
+              Signature Services
+            </h2>
+          </RevealWrapper>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-          {services.map((service, index) => (
-            <RevealWrapper key={service.id} delay={index * 0.1}>
-              <div className="bg-signature-yellow p-6 flex flex-col gap-3 h-full">
-                <div className="text-stone-900">{serviceIcons[index]}</div>
-                <h3 className={`${play.className} text-lg text-stone-900 uppercase tracking-wider`}>
-                  {service.title}
-                </h3>
-                <p className={`${exo2.className} text-stone-800 text-sm leading-relaxed`}>
-                  {service.description}
-                </p>
-              </div>
-            </RevealWrapper>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+            {services.map((service, index) => (
+              <RevealWrapper key={service.id} delay={index * 0.1}>
+                <div className="bg-signature-yellow p-6 flex flex-col gap-3 h-full">
+                  <div className="text-stone-900">{serviceIcons[index]}</div>
+                  <h3 className={`${play.className} text-lg text-stone-900 uppercase tracking-wider`}>
+                    {service.title}
+                  </h3>
+                  <p className={`${exo2.className} text-stone-800 text-sm leading-relaxed`}>
+                    {service.description}
+                  </p>
+                </div>
+              </RevealWrapper>
+            ))}
+          </div>
+
+          <RevealWrapper delay={0.6} className="mt-10">
+            <Link
+              href="/services"
+              className={`${exo2.className} border-2 border-signature-yellow text-signature-yellow px-8 py-3 tracking-widest text-sm uppercase hover:bg-signature-yellow hover:text-black transition-colors duration-300`}
+            >
+              View All Services
+            </Link>
+          </RevealWrapper>
         </div>
-
-        <RevealWrapper delay={0.6} className="mt-10">
-          <Link
-            href="/services"
-            className={`${exo2.className} border-2 border-signature-yellow text-signature-yellow px-8 py-3 tracking-widest text-sm uppercase hover:bg-signature-yellow hover:text-black transition-colors duration-300`}
-          >
-            View All Services
-          </Link>
-        </RevealWrapper>
       </FixedNavSection>
 
       {/* Products section */}
