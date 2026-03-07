@@ -6,6 +6,7 @@ import Hero from "@/app/components/Hero";
 import FixedNavSection from "@/app/components/FixedNavSection";
 import RevealWrapper from "@/app/components/RevealWrapper";
 import { services, productCategories } from "@/app/utils/data";
+import WaveBackground from "@/app/components/WaveBackground";
 
 const play = Play({ weight: ["400"], subsets: ["latin"] });
 const exo2 = Exo_2({ weight: ["400"], subsets: ["latin"] });
@@ -45,6 +46,7 @@ export default function Home() {
 
       {/* Services section */}
       <FixedNavSection theme="gray">
+        <WaveBackground />
         <RevealWrapper className="w-full text-center mb-12 mt-8">
           <h2
             className={`${play.className} text-5xl md:text-6xl text-center text-white tracking-widest uppercase`}
