@@ -34,7 +34,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-            className={`${play.className} text-6xl md:text-8xl text-white tracking-widest uppercase`}
+            className={`${play.className} text-5xl md:text-8xl text-white tracking-widest uppercase`}
           >
             Our Projects
           </motion.h1>
