@@ -157,10 +157,16 @@ export default function WaveBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ pointerEvents: "none" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ pointerEvents: "none" }}
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-48 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, black)" }}
+      />
+    </>
   );
 }
