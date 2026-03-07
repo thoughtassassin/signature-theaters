@@ -14,7 +14,7 @@ export default function ProductsPage() {
   return (
     <main className="bg-black min-h-screen">
       {/* Hero */}
-      <section className="relative h-screen flex items-end justify-start pb-16 md:pb-24 px-8 md:px-24">
+      <section className="relative h-[100dvh] flex items-end justify-start pb-28 md:pb-24 px-8 md:px-24">
         <Image
           src="/Signature%20Theaters-09804.jpg"
           alt="Signature Theaters luxury products"
