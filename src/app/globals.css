@@ -69,6 +69,11 @@ body {
   text-shadow: 2px 2px 2px #000, -2px 2px 2px #000, 2px -2px 2px #000, -2px -2px 2px #000;
 }
 
+/* Safe area padding for mobile bottom bars */
+.pb-safe {
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+
 @keyframes scroll-bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(10px); }

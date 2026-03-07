@@ -77,7 +77,7 @@ const Hero = () => {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-0 right-0 flex justify-center z-[2]"
+        className="absolute bottom-8 left-0 right-0 flex justify-center z-[2] pb-safe"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >

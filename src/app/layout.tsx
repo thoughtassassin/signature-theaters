@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   description: "Luxury home theater installation and smart home integration.",
 };
 
+export const viewport = {
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
