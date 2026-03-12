@@ -2,6 +2,9 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { Play } from "next/font/google";
+
+const play = Play({ weight: ["400"], subsets: ["latin"] });
 
 interface MobileMenuProps {
   setIsOpen: (isOpen: boolean) => void;
@@ -34,7 +37,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed h-[100vh] w-[100%] z-30"
+          className={`fixed h-[100vh] w-[100%] z-30 ${play.className}`}
           variants={item}
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "100vh", opacity: 1 }}
