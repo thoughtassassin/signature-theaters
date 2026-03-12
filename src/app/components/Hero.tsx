@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { homepage_hero_photos } from "@/app/utils/lists";
-import { useTransform, useScroll, motion } from "framer-motion";
+import { useTransform, useScroll, motion, useAnimation } from "framer-motion";
 import { Play, Exo_2 } from "next/font/google";
 import Link from "next/link";
 
@@ -13,6 +13,25 @@ const Hero = () => {
   const heroRef = useRef<null | HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const h1Controls = useAnimation();
+
+  useEffect(() => {
+    const sequence = async () => {
+      await h1Controls.start({
+        opacity: 1,
+        scale: 1,
+        transition: {
+          opacity: { duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 1.8 },
+          scale: { duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 1.8 },
+        },
+      });
+      h1Controls.start({
+        opacity: [1, 0.7, 1],
+        transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+      });
+    };
+    sequence();
+  }, [h1Controls]);
 
   return (
     <motion.div
@@ -44,18 +63,17 @@ const Hero = () => {
       {/* Hero text overlay */}
       <div className="absolute inset-0 z-[2] flex flex-col items-center justify-center text-center px-6">
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          className={`${play.className} text-5xl md:text-7xl lg:text-8xl text-white tracking-widest uppercase mb-4`}
-          style={{ textShadow: "2px 2px 15px rgba(0,0,0,0.9)" }}
+          initial={{ opacity: 0, scale: 0.4 }}
+          animate={h1Controls}
+          className={`${play.className} text-5xl md:text-7xl lg:text-8xl text-white uppercase mb-4`}
+          style={{ textShadow: "2px 2px 15px rgba(0,0,0,0.9)", transformOrigin: "center", letterSpacing: "0.1em" }}
         >
           Signature Theaters
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: 2.0 }}
           className={`${exo2.className} text-lg md:text-2xl text-stone-200 tracking-widest mb-10 max-w-2xl`}
           style={{ textShadow: "1px 1px 8px rgba(0,0,0,0.9)" }}
         >
