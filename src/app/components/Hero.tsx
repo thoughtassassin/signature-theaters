@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { homepage_hero_photos } from "@/app/utils/lists";
 import { useTransform, useScroll, motion, useAnimation } from "framer-motion";
 import { Play, Exo_2 } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 
 const play = Play({ weight: ["400"], subsets: ["latin"] });
 const exo2 = Exo_2({ weight: ["400"], subsets: ["latin"] });
@@ -14,6 +15,19 @@ const Hero = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const h1Controls = useAnimation();
+  const [readyCount, setReadyCount] = useState(1);
+
+  useEffect(() => {
+    const timers = homepage_hero_photos.slice(1).map((_, i) => {
+      const index = i + 1;
+      // Start fetching each photo ~1.5s before its turn in the crossfade,
+      // instead of requesting all of them on mount.
+      return setTimeout(() => {
+        setReadyCount((c) => Math.max(c, index + 1));
+      }, index * 6000 - 1500);
+    });
+    return () => timers.forEach(clearTimeout);
+  }, []);
 
   useEffect(() => {
     const sequence = async () => {
@@ -39,22 +53,31 @@ const Hero = () => {
       style={{ y }}
       className="relative h-screen top-0 w-full absolute"
     >
-      {homepage_hero_photos.map(({ src }, index) => (
+      {homepage_hero_photos.map(({ src, alt }, index) => (
         <div
           key={index}
           className="min-h-[100vh] w-full fixed"
           style={{
             opacity: 0,
-            backgroundImage: `url('/optimized/${src}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             animationDelay: `${index * 6}s`,
             animationName: "imageAnimation",
             animationDuration: homepage_hero_photos.length * 6 + "s",
             animationTimingFunction: "linear",
             animationIterationCount: "infinite",
           }}
-        />
+        >
+          {index < readyCount && (
+            <Image
+              src={`/optimized/${src}`}
+              alt={alt}
+              fill
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+              priority={index === 0}
+              quality={75}
+            />
+          )}
+        </div>
       ))}
 
       {/* Dark overlay */}

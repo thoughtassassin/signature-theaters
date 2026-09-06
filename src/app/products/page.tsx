@@ -38,7 +38,7 @@ export default function ProductsPage() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             className={`${play.className} text-5xl md:text-8xl text-white tracking-widest uppercase`}
           >
-            Our Products
+            Home Theater Products
           </motion.h1>
         </div>
       </section>
