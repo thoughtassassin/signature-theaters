@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { Play, Exo_2 } from "next/font/google";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import RevealWrapper from "@/app/components/RevealWrapper";
+import ProjectLightbox from "@/app/components/ProjectLightbox";
 import { projects } from "@/app/utils/data";
 
 const FeaturedProjectsCarousel = dynamic(
@@ -17,6 +19,11 @@ const play = Play({ weight: ["400"], subsets: ["latin"] });
 const exo2 = Exo_2({ weight: ["400"], subsets: ["latin"] });
 
 export default function ProjectsPage() {
+  const [lightbox, setLightbox] = useState<{ projectId: number; index: number } | null>(null);
+  const lightboxProject = lightbox
+    ? projects.find((project) => project.id === lightbox.projectId)
+    : null;
+
   return (
     <main className="bg-black min-h-screen">
       {/* Minimal dark hero */}
@@ -65,6 +72,7 @@ export default function ProjectsPage() {
                   className="relative aspect-[4/3] overflow-hidden group cursor-pointer"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
+                  onClick={() => setLightbox({ projectId: project.id, index: imgIndex })}
                 >
                   <Image
                     src={`/optimized/${image}`}
@@ -115,6 +123,16 @@ export default function ProjectsPage() {
           </Link>
         </RevealWrapper>
       </section>
+
+      <AnimatePresence>
+        {lightboxProject && lightbox && (
+          <ProjectLightbox
+            project={lightboxProject}
+            initialIndex={lightbox.index}
+            onClose={() => setLightbox(null)}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }
