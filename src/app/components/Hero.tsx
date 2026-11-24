@@ -51,7 +51,7 @@ const Hero = () => {
     <motion.div
       ref={heroRef}
       style={{ y }}
-      className="relative h-screen top-0 w-full absolute"
+      className="relative isolate h-screen top-0 w-full absolute bg-black"
     >
       {homepage_hero_photos.map(({ src, alt }, index) => (
         <div

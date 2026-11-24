@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* Site is dark-only: avoid a white page showing through in light mode */
+  color-scheme: dark;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
   --s: 100px; /* control the size*/
   --c1: #1d1803;
   --c2: #000000;
@@ -31,23 +33,42 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+/*
+ * Hero slideshow, written for 10 photos (6s each = 10% of the cycle).
+ * The incoming slide fades in on top (z-index 0) while the outgoing slide
+ * stays fully opaque underneath (z-index -1) and is hidden only after the
+ * incoming slide is opaque. Fading both at once dips the combined opacity to
+ * ~75% and shows the page background through the gap.
+ */
 @keyframes imageAnimation {
   0% {
     opacity: 0;
+    z-index: 0;
     animation-timing-function: ease-in;
   }
   5% {
     opacity: 1;
-    animation-timing-function: ease-out;
+    z-index: 0;
   }
-  11% {
+  9.99% {
     opacity: 1;
+    z-index: 0;
   }
-  16% {
+  10% {
+    opacity: 1;
+    z-index: -1;
+  }
+  15% {
+    opacity: 1;
+    z-index: -1;
+  }
+  15.01% {
     opacity: 0;
+    z-index: -1;
   }
   100% {
     opacity: 0;
+    z-index: -1;
   }
 }
 
